@@ -37,4 +37,4 @@ Run dockerrun.sh
     ## Only the first time
     Create a Deployment resource on Openshift with the Deploymeny.yaml content
 
-    For new updates launch deploy.sh script again specifying the new version
+## For new updates launch deploy.sh script again specifying the new version
