@@ -35,7 +35,7 @@ spec:
       containers:
         - name: <app_name>
           image: >-
-            image-registry.openshift-image-registry.svc:5000/<project_name>/<app_name>@sha256:<sha256>
+            image-registry.openshift-image-registry.svc:5000/<project_name>/<app_name>@sha256:< sha256 >
           ports:
             - containerPort: 8080
               protocol: TCP
