@@ -26,7 +26,7 @@ Run dockerrun.sh
     - on Deployment.yaml file
         - <app_name> : indicating application name
         - <project_name>: indicating project name
-        - <sha256>: indicating the sha of the latest image uploaded pointed from imageStream resource
+        - < sha256 >: indicating the sha of the latest image uploaded pointed from imageStream resource
             (example:b7233352238b2bcbb699b26e3b57e2946ad793b93d07afa8398db372c19744t2
        
     ## Then run
