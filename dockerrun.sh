@@ -2,8 +2,8 @@
  
 ### Local run script
 
-  project=quarkus-test
-  application=openshift-sap
+  project=<project_name>
+  application=<application_name>
 
   echo "Creating package "
     mvn clean package -DskipTests=true
