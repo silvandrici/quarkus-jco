@@ -48,12 +48,12 @@ public class JcoHandler{
 	@ConfigProperty(name = "jco.language")
     String language; */
 
-	String host = "172.28.3.26";
-	String sysnr = "11";
-	String client = "100";
-	String user = "sviluppo";
-	String passsword = "pocredhat2020";
-    String language = "IT";
+	String host = "";
+	String sysnr = "";
+	String client = "";
+	String user = "";
+	String passsword = "";
+    String language = "";
 
     JCoDestination destination;
     String RFC_DESTINATION_NAME = "ABAP_SYSTEM2";

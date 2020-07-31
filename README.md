@@ -40,6 +40,6 @@ Run dockerrun.sh
 ## For new updates launch deploy.sh script again specifying the new version
 
 ## Updated: added Database connection.
-    On calling /rest/jcotest api, the server will connect to Sap and then will save an access log into Access table.
-    We connected to Postgresql, database available as a template on Openshift Cluster and connect to it using postgresql svc name, by setting the appropriate jdbc string in application.properties 
+- On calling /rest/jcotest api, the server will connect to Sap and then will save an access log into Access table.
+  We connected to Postgresql, database available as a template on Openshift Cluster and connect to it using postgresql svc name, by setting the appropriate jdbc string in application.properties
 
