@@ -4,9 +4,9 @@
 ### Add version as parameter
 
 if [ $1 ]; then
-  project=<project_name>
-  application=<application_name>
-  registry=<registry_address>
+  project=quarkus-test
+  registry=default-route-openshift-image-registry.apps.poc-oc.poc.oc
+  application=openshift-sap
 
   echo "Creating package " $1
     mvn clean package -DskipTests=true

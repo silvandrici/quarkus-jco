@@ -2,6 +2,10 @@ package com.gpa.poc.jco;
 
 import java.util.*;
 
+import java.sql.Timestamp;
+
+import javax.persistence.EntityManager;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -9,6 +13,8 @@ import java.io.UnsupportedEncodingException;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
+import com.gpa.poc.db.DbHandler;
+import com.gpa.poc.model.Access;
 import com.sap.conn.jco.AbapException;
 import com.sap.conn.jco.JCoDestination;
 import com.sap.conn.jco.JCoDestinationManager;
@@ -18,6 +24,13 @@ import com.sap.conn.jco.ext.DestinationDataProvider;
 
 public class JcoHandler{
 
+	DbHandler db;
+	private DbHandler getDb(){
+		if (db == null){
+			db =  new DbHandler();
+		}
+		return db;
+	}
 
     // sap connection properties
 
@@ -35,22 +48,26 @@ public class JcoHandler{
 	@ConfigProperty(name = "jco.language")
     String language; */
 
-	String host = "<host>";
-	String sysnr = "<sysnr>";
-	String client = "<client>";
-	String user = "<user>";
-	String passsword = "<passsword>";
-    String language = "<language>";
+	String host = "172.28.3.26";
+	String sysnr = "11";
+	String client = "100";
+	String user = "sviluppo";
+	String passsword = "pocredhat2020";
+    String language = "IT";
 
     JCoDestination destination;
     String RFC_DESTINATION_NAME = "ABAP_SYSTEM2";
 	
     //RFC to call
     private final String STFC_CONNECTION= "STFC_CONNECTION";
+
+    public String test(){
+        return "test";
+    }
     
-    public String jcoTest() throws JCoException {
+    public String jcoTest(EntityManager em) throws JCoException {
+        DbHandler db = getDb();
     	JCoDestination destination;
-        
 		try{
 			destination = JCoDestinationManager.getDestination(RFC_DESTINATION_NAME);
 		}catch(Exception e){
@@ -68,10 +85,19 @@ public class JcoHandler{
             System.out.println(e);
         }
 
+        //LOG ACCESS
         String toReturn = function.getExportParameterList().getString("RESPTEXT");
         System.out.println("STFC_CONNECTION finished:");
         System.out.println(" Echo: " + function.getExportParameterList().getString("ECHOTEXT"));
         System.out.println(" Response: " + function.getExportParameterList().getString("RESPTEXT"));
+
+        //SAVE ACCESS RECORD ON DB
+        Timestamp sqlTime = new Timestamp(System.currentTimeMillis());
+        Access access = new Access();
+        access.setTime(sqlTime);
+        access.setInfo(toReturn);
+        db.persistAccess(em, access);
+
         return toReturn;
     }
 
